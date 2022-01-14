@@ -53,6 +53,12 @@ const styles = theme => ({
     color: theme.palette.text.secondary,
     borderBottom: '1px dashed',
   },
+  withdrawalNote: {
+    textAlign: 'center',
+    fontSize: '14px',
+    fontWeight: '550',
+    color: theme.palette.text.secondary,
+  },
   zapNote: {
     width: '100%',
     textAlign: 'left',

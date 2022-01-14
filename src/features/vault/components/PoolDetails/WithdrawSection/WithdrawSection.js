@@ -314,6 +314,10 @@ const WithdrawSection = ({ pool, index, sharesBalance }) => {
     }
   };
 
+  const withdrawalNote = t('Vault-Withdrawal-Platform-Notes', { returnObjects: true })[
+    pool.platform
+  ];
+
   return (
     <Grid
       item
@@ -414,6 +418,7 @@ const WithdrawSection = ({ pool, index, sharesBalance }) => {
               </div>
             )}
             <div className={classes.zapNote}>
+              {withdrawalNote ? <h3 className={classes.withdrawalNote}>{withdrawalNote}</h3> : ''}
               <span>{t('Vault-WithdrawScenario')}&nbsp;</span>
               {fetchZapEstimatePending[pool.tokenAddress] && <CircularProgress size={12} />}
               <ol>
