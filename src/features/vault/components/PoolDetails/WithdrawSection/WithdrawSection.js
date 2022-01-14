@@ -315,8 +315,7 @@ const WithdrawSection = ({ pool, index, sharesBalance }) => {
   };
 
   const withrawalNoticeKey = `Vault-Withdrawal-Platform-Notice-${pool.platform}`;
-  const withdrawalNotice =
-    !sharesBalance.isZero() && i18n.exists(withrawalNoticeKey) && t(withrawalNoticeKey);
+  const withdrawalNotice = !sharesBalance.isZero() && i18n.exists(withrawalNoticeKey);
 
   return (
     <Grid
@@ -417,15 +416,16 @@ const WithdrawSection = ({ pool, index, sharesBalance }) => {
                 )}
               </div>
             )}
+            {/* Display a platform-specific withdrawal notice */}
+            {/* NOTE: Temporary hack until better solution is found */}
+            {withdrawalNotice ? (
+              <div className={classes.withdrawalNoticeContainer}>
+                <div className={classes.withdrawalNotice}>{t(withrawalNoticeKey)}</div>
+              </div>
+            ) : (
+              ''
+            )}
             <div className={classes.zapNote}>
-              {/* Display a platform-specific withdrawal notice */}
-              {/* NOTE: Temporary hack until better solution is found */}
-              {withdrawalNotice ? (
-                <h3 className={classes.withdrawalNotice}>{withdrawalNotice}</h3>
-              ) : (
-                ''
-              )}
-
               <span>{t('Vault-WithdrawScenario')}&nbsp;</span>
               {fetchZapEstimatePending[pool.tokenAddress] && <CircularProgress size={12} />}
               <ol>

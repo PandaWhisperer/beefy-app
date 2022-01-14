@@ -53,11 +53,17 @@ const styles = theme => ({
     color: theme.palette.text.secondary,
     borderBottom: '1px dashed',
   },
+  withdrawalNoticeContainer: {
+    position: 'absolute',
+    bottom: '0px',
+    right: '0px',
+    backgroundColor: theme.palette.type === 'dark' ? '#dd7217' : '#ff9f2c',
+  },
   withdrawalNotice: {
-    textAlign: 'center',
+    padding: '5px 10px',
     fontSize: '14px',
-    fontWeight: '550',
-    color: theme.palette.text.secondary,
+    fontWeight: 'bold',
+    color: '#ffffff',
   },
   zapNote: {
     width: '100%',
