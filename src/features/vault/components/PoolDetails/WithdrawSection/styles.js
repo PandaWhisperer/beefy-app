@@ -53,7 +53,7 @@ const styles = theme => ({
     color: theme.palette.text.secondary,
     borderBottom: '1px dashed',
   },
-  withdrawalNote: {
+  withdrawalNotice: {
     textAlign: 'center',
     fontSize: '14px',
     fontWeight: '550',

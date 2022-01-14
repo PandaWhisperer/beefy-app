@@ -35,7 +35,7 @@ const useStyles = makeStyles(styles);
 const nativeCoin = getNetworkCoin();
 
 const WithdrawSection = ({ pool, index, sharesBalance }) => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const classes = useStyles();
   const { web3, address } = useConnectWallet();
   const { enqueueSnackbar } = useSnackbar();
@@ -314,9 +314,8 @@ const WithdrawSection = ({ pool, index, sharesBalance }) => {
     }
   };
 
-  const withdrawalNote = t('Vault-Withdrawal-Platform-Notes', { returnObjects: true })[
-    pool.platform
-  ];
+  const withrawalNoticeKey = `Vault-Withdrawal-Platform-Notice-${pool.platform}`;
+  const withdrawalNotice = i18n.exists(withrawalNoticeKey) && t(withrawalNoticeKey);
 
   return (
     <Grid
@@ -418,7 +417,14 @@ const WithdrawSection = ({ pool, index, sharesBalance }) => {
               </div>
             )}
             <div className={classes.zapNote}>
-              {withdrawalNote ? <h3 className={classes.withdrawalNote}>{withdrawalNote}</h3> : ''}
+              {/* Display a platform-specific withdrawal notice */}
+              {/* NOTE: Temporary hack until better solution is found */}
+              {withdrawalNotice ? (
+                <h3 className={classes.withdrawalNotice}>{withdrawalNotice}</h3>
+              ) : (
+                ''
+              )}
+
               <span>{t('Vault-WithdrawScenario')}&nbsp;</span>
               {fetchZapEstimatePending[pool.tokenAddress] && <CircularProgress size={12} />}
               <ol>
