@@ -315,7 +315,8 @@ const WithdrawSection = ({ pool, index, sharesBalance }) => {
   };
 
   const withrawalNoticeKey = `Vault-Withdrawal-Platform-Notice-${pool.platform}`;
-  const withdrawalNotice = i18n.exists(withrawalNoticeKey) && t(withrawalNoticeKey);
+  const withdrawalNotice =
+    !sharesBalance.isZero() && i18n.exists(withrawalNoticeKey) && t(withrawalNoticeKey);
 
   return (
     <Grid
